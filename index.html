@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pricing — Snehal Mahasagar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink: #0e0e0e;
+  --cream: #faf8f3;
+  --warm: #f2ede3;
+  --gold: #c9a84c;
+  --gold-light: #f5e9c8;
+  --gold-dark: #7a5c1e;
+  --sage: #4a6741;
+  --sage-light: #e8f0e7;
+  --rust: #b84c2a;
+  --rust-light: #faeae4;
+  --muted: #7a7670;
+  --border: rgba(14,14,14,0.1);
+  --border-strong: rgba(14,14,14,0.2);
+  --r: 16px;
+  --r-sm: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Noise texture overlay ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ─── Decorative BG rings ─── */
+.bg-ring {
+  position: fixed;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.12);
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-ring-1 { width: 700px; height: 700px; top: -200px; right: -200px; }
+.bg-ring-2 { width: 500px; height: 500px; bottom: -150px; left: -150px; border-color: rgba(74,103,65,0.1); }
+.bg-ring-3 { width: 300px; height: 300px; top: 40%; left: 30%; border-color: rgba(201,168,76,0.07); }
+
+/* ─── Container ─── */
+.page { position: relative; z-index: 1; max-width: 1060px; margin: 0 auto; padding: 0 2rem; }
+
+/* ─── Header ─── */
+header {
+  padding: 4rem 0 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+.brand { display: flex; flex-direction: column; gap: 2px; }
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.brand-role {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.header-links { display: flex; gap: 1.25rem; align-items: center; padding-top: 4px; }
+.header-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+.header-links a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* ─── Hero text ─── */
+.hero {
+  padding: 3.5rem 0 1rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.1s ease forwards;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 1rem;
+}
+.eyebrow-line { width: 24px; height: 1px; background: var(--gold); }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+  max-width: 620px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--gold-dark);
+}
+.hero-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+/* ─── Divider ─── */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-strong), transparent);
+  margin: 2.5rem 0;
+  opacity: 0;
+  animation: fadeIn 0.5s 0.3s ease forwards;
+}
+
+/* ─── Grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.35s ease forwards;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.45s ease forwards;
+}
+
+/* ─── Card base ─── */
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(14,14,14,0.08);
+  border-color: var(--border-strong);
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: var(--r) var(--r) 0 0;
+}
+.card-gold::before  { background: linear-gradient(to right, var(--gold-dark), var(--gold)); }
+.card-sage::before  { background: linear-gradient(to right, var(--sage), #6a9b60); }
+.card-rust::before  { background: linear-gradient(to right, var(--rust), #e06840); }
+.card-ink::before   { background: linear-gradient(to right, #1a1a1a, #555); }
+.card-teal::before  { background: linear-gradient(to right, #2a7a7a, #3db8b8); }
+
+/* ─── Featured card ─── */
+.card-featured {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+.card-featured:hover { box-shadow: 0 16px 48px rgba(14,14,14,0.25); border-color: var(--ink); }
+.card-featured .card-category { color: rgba(255,255,255,0.45); }
+.card-featured .card-price { color: #fff; }
+.card-featured .card-price-sub { color: rgba(255,255,255,0.5); }
+.card-featured .card-desc { color: rgba(255,255,255,0.6); }
+.card-featured .feature { color: rgba(255,255,255,0.8); }
+.card-featured .feature-dot { background: var(--gold); }
+.card-featured::before { background: linear-gradient(to right, var(--gold), #f0c060); }
+.featured-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+/* ─── Card content ─── */
+.card-category {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: inherit;
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+.card-featured .card-title { color: #fff; }
+.card-price {
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1rem 0 0.2rem;
+  letter-spacing: -0.02em;
+  font-family: 'Outfit', sans-serif;
+}
+.card-price-sub {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.card-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.card-featured .card-desc { border-bottom-color: rgba(255,255,255,0.1); }
+.features { display: flex; flex-direction: column; gap: 8px; }
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.feature-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-dark);
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.card-sage  .feature-dot { background: var(--sage); }
+.card-rust  .feature-dot { background: var(--rust); }
+.card-ink   .feature-dot { background: var(--ink); }
+.card-teal  .feature-dot { background: #2a7a7a; }
+
+/* ─── Combo card ─── */
+.combo-card {
+  grid-column: span 2;
+  background: linear-gradient(135deg, #0e0e0e 0%, #1e1a14 100%);
+  border: 1px solid rgba(201,168,76,0.3);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  color: #fff;
+}
+.combo-card::before { background: linear-gradient(to right, var(--gold-dark), var(--gold), #e8b84a); height: 2px; }
+.combo-card:hover { box-shadow: 0 16px 48px rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.5); }
+.combo-left { display: flex; flex-direction: column; justify-content: space-between; }
+.combo-right { display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-left: 2rem; border-left: 1px solid rgba(255,255,255,0.08); }
+.combo-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(201,168,76,0.15);
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+  width: fit-content;
+}
+.combo-card .card-title { color: #fff; font-size: 1.4rem; }
+.combo-card .card-desc { color: rgba(255,255,255,0.5); border-bottom-color: rgba(255,255,255,0.08); }
+.combo-card .card-price { color: var(--gold); font-size: 2rem; }
+.combo-card .card-price-sub { color: rgba(255,255,255,0.4); }
+.combo-card .feature { color: rgba(255,255,255,0.8); }
+.combo-card .feature-dot { background: var(--gold); }
+.combo-savings {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(74,103,65,0.2);
+  border: 1px solid rgba(74,103,65,0.35);
+  color: #7ab871;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  margin-top: 0.75rem;
+}
+.savings-dot { width: 6px; height: 6px; border-radius: 50%; background: #7ab871; }
+
+/* ─── CTA Strip ─── */
+.cta-strip {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.55s ease forwards;
+  transition: box-shadow 0.25s ease;
+}
+.cta-strip:hover { box-shadow: 0 8px 32px rgba(14,14,14,0.06); }
+.cta-text .cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.cta-text .cta-sub { font-size: 13px; color: var(--muted); font-weight: 300; }
+.cta-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px 22px;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  border: 1px solid var(--ink);
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover { background: #2a2a2a; transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 11px 22px;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  transition: background 0.2s;
+  border: 1px solid var(--border-strong);
+}
+.btn-secondary:hover { background: var(--warm); }
+.btn-arrow { font-size: 14px; transition: transform 0.2s; }
+.btn-primary:hover .btn-arrow,
+.btn-secondary:hover .btn-arrow { transform: translateX(3px); }
+
+/* ─── Footer ─── */
+footer {
+  padding: 2.5rem 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  opacity: 0;
+  animation: fadeIn 0.6s 0.65s ease forwards;
+}
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.footer-note { font-size: 12px; color: var(--muted); font-weight: 300; }
+.footer-contact { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-contact a {
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.footer-contact a:hover { color: var(--ink); }
+.contact-icon { font-size: 14px; }
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 820px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .combo-card { grid-column: span 1; grid-template-columns: 1fr; }
+  .combo-right { padding-left: 0; border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; }
+}
+@media (max-width: 560px) {
+  .grid, .grid-2 { grid-template-columns: 1fr; }
+  .combo-card { grid-column: span 1; }
+  .hero-title { font-size: 2rem; }
+  .cta-strip { flex-direction: column; align-items: flex-start; }
+  header { flex-direction: column; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-ring bg-ring-1"></div>
+<div class="bg-ring bg-ring-2"></div>
+<div class="bg-ring bg-ring-3"></div>
+
+<div class="page">
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-name">Snehal Mahasagar</div>
+      <div class="brand-role">Freelance Web Developer · Pune</div>
+    </div>
+    <div class="header-links">
+      <a href="https://snehal-mahasagar-portfolio.vercel.app/" target="_blank">Portfolio ↗</a>
+      <a href="/cdn-cgi/l/email-protection#75061b101d141918141d140614121407351218141c195b161a18"><span class="__cf_email__" data-cfemail="05766b606d646968646d647664626477456268646c692b666a68">[email&#160;protected]</span></a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="eyebrow"><span class="eyebrow-line"></span>Services & Pricing</div>
+    <h1 class="hero-title">Honest prices.<br><em>Beautiful results.</em></h1>
+    <p class="hero-sub">Your business deserves a real website — not a ₹2 lakh agency bill.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Row 1: 3 cards -->
+  <div class="grid">
+
+    <div class="card card-gold">
+      <div class="card-category">Starter</div>
+      <div class="card-title">Basic Website</div>
+      <div class="card-price">₹6,000 <span style="font-size:1rem;font-weight:300;">– ₹10,000</span></div>
+      <div class="card-price-sub">One-time · Delivered in 8-10 days</div>
+      <div class="card-desc">Perfect for businesses that just need a clean, credible online presence to share with customers.</div>
+      <div class="features">
+        <div class="feature"><div class="feature-dot"></div>3–5 custom pages</div>
+        <div class="feature"><div class="feature-dot"></div>Mobile responsive design</div>
+        <div class="feature"><div class="feature-dot"></div>Contact details & map</div>
+        <div class="feature"><div class="feature-dot"></div>Basic SEO setup</div>
+        <div class="feature"><div class="feature-dot"></div>1 round of revisions</div>
+      </div>
+    </div>
+
+    <div class="card card-featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="card-category">Professional</div>
+      <div class="card-title">Business Website</div>
+      <div class="card-price">₹10,000 <span style="font-size:1rem;font-weight:300;">– ₹18,000</span></div>
+      <div class="card-price-sub">One-time · Delivered in 10-15 days</div>
+      <div class="card-desc">A fully-featured website that converts visitors into paying customers with smart contact flows.</div>
+      <div class="features">
+        <div class="feature"><div class="feature-dot"></div>5–8 pages with contact form</div>
+        <div class="feature"><div class="feature-dot"></div>WhatsApp inquiry button</div>
+        <div class="feature"><div class="feature-dot"></div>Services / menu section</div>
+        <div class="feature"><div class="feature-dot"></div>Photo gallery</div>
+        <div class="feature"><div class="feature-dot"></div>Google Maps integration</div>
+        <div class="feature"><div class="feature-dot"></div>2 rounds of revisions</div>
+      </div>
+    </div>
+
+    <div class="card card-sage">
+      <div class="card-category">E-commerce</div>
+      <div class="card-title">Online Store</div>
+      <div class="card-price">₹15,000 <span style="font-size:1rem;font-weight:300;">– ₹30,000</span></div>
+      <div class="card-price-sub">One-time · Delivered in 20–24 days</div>
+      <div class="card-desc">Sell your products online with a clean storefront, product listings, and inquiry/order flow.</div>
+      <div class="features">
+        <div class="feature"><div class="feature-dot"></div>Product catalogue pages</div>
+        <div class="feature"><div class="feature-dot"></div>Order/inquiry form</div>
+        <div class="feature"><div class="feature-dot"></div>Category filtering</div>
+        <div class="feature"><div class="feature-dot"></div>Product image gallery</div>
+        <div class="feature"><div class="feature-dot"></div>Mobile-first layout</div>
+        <div class="feature"><div class="feature-dot"></div>3 rounds of revisions</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Row 2: Combo (wide) + two smaller -->
+  <div class="grid-2">
+
+    <div class="card combo-card">
+      <div class="combo-left">
+        <div>
+          <div class="combo-tag">Best Value Bundle</div>
+          <div class="card-title">Website + GMB + LinkedIn</div>
+          <div class="card-desc">Everything your business needs to be found online, look professional, and generate leads — in one go.</div>
+        </div>
+        <div>
+          <div class="card-price">₹15,000</div>
+          <div class="card-price-sub">Full package · Most clients choose this</div>
+          <div class="combo-savings"><div class="savings-dot"></div>Save up to ₹6,000 vs. buying separately</div>
+        </div>
+      </div>
+      <div class="combo-right">
+        <div class="features">
+          <div class="feature"><div class="feature-dot"></div>Professional business website</div>
+          <div class="feature"><div class="feature-dot"></div>Google My Business setup</div>
+          <div class="feature"><div class="feature-dot"></div>LinkedIn company page</div>
+          <div class="feature"><div class="feature-dot"></div>Appear in Google Maps searches</div>
+          <div class="feature"><div class="feature-dot"></div>WhatsApp + contact integration</div>
+          <div class="feature"><div class="feature-dot"></div>Delivered in under 3-4 weeks</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+      <div class="card card-ink">
+        <div class="card-category">Digital Presence</div>
+        <div class="card-title">LinkedIn Page Setup</div>
+        <div class="card-price">₹4,000 <span style="font-size:1rem;font-weight:300;">– ₹8,000</span></div>
+        <div class="card-price-sub">One-time setup + 1 month handling</div>
+        <div class="card-desc" style="margin-bottom:1rem;padding-bottom:1rem;">For startups & professionals who need a credible LinkedIn presence.</div>
+        <div class="features">
+          <div class="feature"><div class="feature-dot"></div>Company page creation & branding</div>
+          <div class="feature"><div class="feature-dot"></div>Profile optimisation</div>
+          <div class="feature"><div class="feature-dot"></div>4 posts in first month</div>
+        </div>
+      </div>
+
+      <div class="card card-teal">
+        <div class="card-category">Local SEO</div>
+        <div class="card-title">Google My Business</div>
+        <div class="card-price">₹1,500 <span style="font-size:1rem;font-weight:300;">– ₹3,000</span></div>
+        <div class="card-price-sub">One-time setup</div>
+        <div class="card-desc" style="margin-bottom:1rem;padding-bottom:1rem;">Get your business on Google Maps so local customers can find you instantly.</div>
+        <div class="features">
+          <div class="feature"><div class="feature-dot"></div>Verified GMB listing</div>
+          <div class="feature"><div class="feature-dot"></div>Photos, hours & description</div>
+          <div class="feature"><div class="feature-dot"></div>Maps & search visibility</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Monthly add-on -->
+  <div class="grid" style="grid-template-columns: 1fr; animation-delay: 0.5s;">
+    <div class="card card-rust" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <div class="card-category">Ongoing</div>
+        <div class="card-title" style="font-size:1.1rem;">Monthly Social Media Handling</div>
+        <div class="card-desc" style="border:none;margin:0.5rem 0 0;padding:0;max-width:520px;">Let me handle your LinkedIn so you can focus on running your business. Consistent posting, captions, and basic engagement.</div>
+      </div>
+      <div style="flex-shrink:0;">
+        <div class="card-price" style="font-size:1.6rem;">₹3,000 <span style="font-size:0.9rem;font-weight:300;">– ₹6,000</span></div>
+        <div class="card-price-sub">Per month · Minimum 2 months</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Strip -->
+  <div class="cta-strip">
+    <div class="cta-text">
+      <div class="cta-title">Not sure which plan fits?</div>
+      <div class="cta-sub">Drop me a message — I'll give you an honest recommendation for free.</div>
+    </div>
+    <div class="cta-actions">
+      <a href="/cdn-cgi/l/email-protection#ea99848f828b86878b828b998b8d8b98aa8d878b8386c4898587" class="btn-primary">Get in touch <span class="btn-arrow">→</span></a>
+      <a href="https://snehal-mahasagar-portfolio.vercel.app/" target="_blank" class="btn-secondary">See my work <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <div class="footer-brand">Snehal Mahasagar</div>
+      <div class="footer-note">Freelance Web Developer · Pune, Maharashtra</div>
+    </div>
+    <div class="footer-contact">
+      <a href="/cdn-cgi/l/email-protection#73001d161b121f1e121b12001214120133141e121a1f5d101c1e">
+        <span class="contact-icon"
