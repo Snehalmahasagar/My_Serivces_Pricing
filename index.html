@@ -1,661 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Affordable freelance web development services in Pune. Get modern, fast, and SEO-friendly websites.">
-<meta name="author" content="Snehal Mahasagar">
-<title>Pricing — Snehal Mahasagar</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-:root {
-  --ink: #0e0e0e;
-  --cream: #faf8f3;
-  --warm: #f2ede3;
-  --gold: #c9a84c;
-  --gold-light: #f5e9c8;
-  --gold-dark: #7a5c1e;
-  --sage: #4a6741;
-  --sage-light: #e8f0e7;
-  --rust: #b84c2a;
-  --rust-light: #faeae4;
-  --muted: #7a7670;
-  --border: rgba(14,14,14,0.1);
-  --border-strong: rgba(14,14,14,0.2);
-  --r: 16px;
-  --r-sm: 10px;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Outfit', sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* ─── Noise texture overlay ─── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
-}
-
-/* ─── Decorative BG rings ─── */
-.bg-ring {
-  position: fixed;
-  border-radius: 50%;
-  border: 1px solid rgba(201,168,76,0.12);
-  pointer-events: none;
-  z-index: 0;
-}
-.bg-ring-1 { width: 700px; height: 700px; top: -200px; right: -200px; }
-.bg-ring-2 { width: 500px; height: 500px; bottom: -150px; left: -150px; border-color: rgba(74,103,65,0.1); }
-.bg-ring-3 { width: 300px; height: 300px; top: 40%; left: 30%; border-color: rgba(201,168,76,0.07); }
-
-/* ─── Container ─── */
-.page { position: relative; z-index: 1; max-width: 1060px; margin: 0 auto; padding: 0 2rem; }
-
-/* ─── Header ─── */
-header {
-  padding: 4rem 0 1.5rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.7s ease forwards;
-}
-.brand { display: flex; flex-direction: column; gap: 2px; }
-.brand-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-}
-.brand-role {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.header-links { display: flex; gap: 1.25rem; align-items: center; padding-top: 4px; }
-.header-links a {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 1px;
-}
-.header-links a:hover { color: var(--ink); border-bottom-color: var(--ink); }
-
-/* ─── Hero text ─── */
-.hero {
-  padding: 3.5rem 0 1rem;
-  opacity: 0;
-  animation: fadeUp 0.7s 0.1s ease forwards;
-}
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-  margin-bottom: 1rem;
-}
-.eyebrow-line { width: 24px; height: 1px; background: var(--gold); }
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 1.2rem;
-  max-width: 620px;
-}
-.hero-title em {
-  font-style: italic;
-  color: var(--gold-dark);
-}
-.hero-sub {
-  font-size: 15px;
-  font-weight: 300;
-  color: var(--muted);
-  max-width: 480px;
-  line-height: 1.7;
-}
-
-/* ─── Divider ─── */
-.divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border-strong), transparent);
-  margin: 2.5rem 0;
-  opacity: 0;
-  animation: fadeIn 0.5s 0.3s ease forwards;
-}
-
-/* ─── Grid ─── */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-bottom: 1.25rem;
-  opacity: 0;
-  animation: fadeUp 0.7s 0.35s ease forwards;
-}
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-  margin-bottom: 1.25rem;
-  opacity: 0;
-  animation: fadeUp 0.7s 0.45s ease forwards;
-}
-
-/* ─── Card base ─── */
-.card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 1.75rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(14,14,14,0.08);
-  border-color: var(--border-strong);
-}
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  border-radius: var(--r) var(--r) 0 0;
-}
-.card-gold::before  { background: linear-gradient(to right, var(--gold-dark), var(--gold)); }
-.card-sage::before  { background: linear-gradient(to right, var(--sage), #6a9b60); }
-.card-rust::before  { background: linear-gradient(to right, var(--rust), #e06840); }
-.card-ink::before   { background: linear-gradient(to right, #1a1a1a, #555); }
-.card-teal::before  { background: linear-gradient(to right, #2a7a7a, #3db8b8); }
-
-/* ─── Featured card ─── */
-.card-featured {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
-}
-.card-featured:hover { box-shadow: 0 16px 48px rgba(14,14,14,0.25); border-color: var(--ink); }
-.card-featured .card-category { color: rgba(255,255,255,0.45); }
-.card-featured .card-price { color: #fff; }
-.card-featured .card-price-sub { color: rgba(255,255,255,0.5); }
-.card-featured .card-desc { color: rgba(255,255,255,0.6); }
-.card-featured .feature { color: rgba(255,255,255,0.8); }
-.card-featured .feature-dot { background: var(--gold); }
-.card-featured::before { background: linear-gradient(to right, var(--gold), #f0c060); }
-.featured-badge {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: var(--gold);
-  color: var(--ink);
-  padding: 3px 10px;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-}
-
-/* ─── Card content ─── */
-.card-category {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
-}
-.card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: inherit;
-  margin-bottom: 0.35rem;
-  line-height: 1.2;
-}
-.card-featured .card-title { color: #fff; }
-.card-price {
-  font-size: 1.55rem;
-  font-weight: 600;
-  color: var(--ink);
-  margin: 1rem 0 0.2rem;
-  letter-spacing: -0.02em;
-  font-family: 'Outfit', sans-serif;
-}
-.card-price-sub {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-.card-desc {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border);
-}
-.card-featured .card-desc { border-bottom-color: rgba(255,255,255,0.1); }
-.features { display: flex; flex-direction: column; gap: 8px; }
-.feature {
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--ink);
-  line-height: 1.4;
-}
-.feature-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--gold-dark);
-  margin-top: 5px;
-  flex-shrink: 0;
-}
-.card-sage  .feature-dot { background: var(--sage); }
-.card-rust  .feature-dot { background: var(--rust); }
-.card-ink   .feature-dot { background: var(--ink); }
-.card-teal  .feature-dot { background: #2a7a7a; }
-
-/* ─── Combo card ─── */
-.combo-card {
-  grid-column: span 2;
-  background: linear-gradient(135deg, #0e0e0e 0%, #1e1a14 100%);
-  border: 1px solid rgba(201,168,76,0.3);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  color: #fff;
-}
-.combo-card::before { background: linear-gradient(to right, var(--gold-dark), var(--gold), #e8b84a); height: 2px; }
-.combo-card:hover { box-shadow: 0 16px 48px rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.5); }
-.combo-left { display: flex; flex-direction: column; justify-content: space-between; }
-.combo-right { display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-left: 2rem; border-left: 1px solid rgba(255,255,255,0.08); }
-.combo-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: rgba(201,168,76,0.15);
-  color: var(--gold);
-  border: 1px solid rgba(201,168,76,0.3);
-  padding: 4px 12px;
-  border-radius: 20px;
-  margin-bottom: 0.75rem;
-  width: fit-content;
-}
-.combo-card .card-title { color: #fff; font-size: 1.4rem; }
-.combo-card .card-desc { color: rgba(255,255,255,0.5); border-bottom-color: rgba(255,255,255,0.08); }
-.combo-card .card-price { color: var(--gold); font-size: 2rem; }
-.combo-card .card-price-sub { color: rgba(255,255,255,0.4); }
-.combo-card .feature { color: rgba(255,255,255,0.8); }
-.combo-card .feature-dot { background: var(--gold); }
-.combo-savings {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(74,103,65,0.2);
-  border: 1px solid rgba(74,103,65,0.35);
-  color: #7ab871;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 4px 12px;
-  border-radius: 20px;
-  width: fit-content;
-  margin-top: 0.75rem;
-}
-.savings-dot { width: 6px; height: 6px; border-radius: 50%; background: #7ab871; }
-
-/* ─── CTA Strip ─── */
-.cta-strip {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 2rem 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.25rem;
-  opacity: 0;
-  animation: fadeUp 0.7s 0.55s ease forwards;
-  transition: box-shadow 0.25s ease;
-}
-.cta-strip:hover { box-shadow: 0 8px 32px rgba(14,14,14,0.06); }
-.cta-text .cta-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 0.3rem;
-}
-.cta-text .cta-sub { font-size: 13px; color: var(--muted); font-weight: 300; }
-.cta-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--ink);
-  color: #fff;
-  font-family: 'Outfit', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 11px 22px;
-  border-radius: var(--r-sm);
-  text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
-  border: 1px solid var(--ink);
-  letter-spacing: 0.01em;
-}
-.btn-primary:hover { background: #2a2a2a; transform: translateY(-1px); }
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: var(--ink);
-  font-family: 'Outfit', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  padding: 11px 22px;
-  border-radius: var(--r-sm);
-  text-decoration: none;
-  transition: background 0.2s;
-  border: 1px solid var(--border-strong);
-}
-.btn-secondary:hover { background: var(--warm); }
-.btn-arrow { font-size: 14px; transition: transform 0.2s; }
-.btn-primary:hover .btn-arrow,
-.btn-secondary:hover .btn-arrow { transform: translateX(3px); }
-
-/* ─── Footer ─── */
-footer {
-  padding: 2.5rem 0 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--border);
-  opacity: 0;
-  animation: fadeIn 0.6s 0.65s ease forwards;
-}
-.footer-brand {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-.footer-note { font-size: 12px; color: var(--muted); font-weight: 300; }
-.footer-contact { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-.footer-contact a {
-  font-size: 12px;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.footer-contact a:hover { color: var(--ink); }
-.contact-icon { font-size: 14px; }
-
-/* ─── Animations ─── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* ─── Responsive ─── */
-@media (max-width: 820px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  .combo-card { grid-column: span 1; grid-template-columns: 1fr; }
-  .combo-right { padding-left: 0; border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; }
-}
-@media (max-width: 560px) {
-  .grid, .grid-2 { grid-template-columns: 1fr; }
-  .combo-card { grid-column: span 1; }
-  .hero-title { font-size: 2rem; }
-  .cta-strip { flex-direction: column; align-items: flex-start; }
-  header { flex-direction: column; gap: 1rem; }
-}
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Mahasagar Services – Affordable freelance web development by Snehal Mahasagar, Pune."/>
+  <title>Mahasagar Services — Snehal Mahasagar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<div class="bg-ring bg-ring-1"></div>
-<div class="bg-ring bg-ring-2"></div>
-<div class="bg-ring bg-ring-3"></div>
+<!-- ══════════════ CANVAS (particles) ══════════════ -->
+<canvas id="particleCanvas"></canvas>
 
-<div class="page">
+<!-- ══════════════ CURSOR ══════════════ -->
+<div class="cursor-outer" id="cursorOuter"></div>
+<div class="cursor-dot" id="cursorDot"></div>
 
-  <!-- Header -->
-  <header>
-    <div class="brand">
-      <div class="brand-name">Snehal Mahasagar</div>
-      <div class="brand-role">Freelance Web Developer · Pune</div>
-    </div>
-    <div class="header-links">
-      <a href="https://snehal-mahasagar-portfolio.vercel.app/" target="_blank">Portfolio ↗</a>
-<a href="mailto:snehalmahasagar@gmail.com">Send me Email</a>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <div class="hero">
-    <div class="eyebrow"><span class="eyebrow-line"></span>Services & Pricing</div>
-    <h1 class="hero-title">Honest prices.<br><em>Beautiful results.</em></h1>
-    <p class="hero-sub">Your business deserves a real website — not a ₹2 lakh agency bill.</p>
+<!-- ══════════════ LOADER ══════════════ -->
+<div class="loader" id="loader">
+  <div class="loader-logo">
+    <span class="loader-m">M</span>
+    <div class="loader-bar"></div>
   </div>
-
-  <div class="divider"></div>
-
-  <!-- Row 1: 3 cards -->
-  <div class="grid">
-
-    <div class="card card-gold">
-      <div class="card-category">Starter</div>
-      <div class="card-title">Basic Website</div>
-      <div class="card-price">₹6,000 <span style="font-size:1rem;font-weight:300;">– ₹10,000</span></div>
-      <div class="card-price-sub">One-time · Delivered in 8-10 days</div>
-      <div class="card-desc">Perfect for businesses that just need a clean, credible online presence to share with customers.</div>
-      <div class="features">
-        <div class="feature"><div class="feature-dot"></div>3–5 custom pages</div>
-        <div class="feature"><div class="feature-dot"></div>Mobile responsive design</div>
-        <div class="feature"><div class="feature-dot"></div>Contact details & map</div>
-        <div class="feature"><div class="feature-dot"></div>Basic SEO setup</div>
-        <div class="feature"><div class="feature-dot"></div>1 round of revisions</div>
-      </div>
-    </div>
-
-    <div class="card card-featured">
-      <div class="featured-badge">Most Popular</div>
-      <div class="card-category">Professional</div>
-      <div class="card-title">Business Website</div>
-      <div class="card-price">₹10,000 <span style="font-size:1rem;font-weight:300;">– ₹18,000</span></div>
-      <div class="card-price-sub">One-time · Delivered in 10-15 days</div>
-      <div class="card-desc">A fully-featured website that converts visitors into paying customers with smart contact flows.</div>
-      <div class="features">
-        <div class="feature"><div class="feature-dot"></div>5–8 pages with contact form</div>
-        <div class="feature"><div class="feature-dot"></div>WhatsApp inquiry button</div>
-        <div class="feature"><div class="feature-dot"></div>Services / menu section</div>
-        <div class="feature"><div class="feature-dot"></div>Photo gallery</div>
-        <div class="feature"><div class="feature-dot"></div>Google Maps integration</div>
-        <div class="feature"><div class="feature-dot"></div>2 rounds of revisions</div>
-      </div>
-    </div>
-
-    <div class="card card-sage">
-      <div class="card-category">E-commerce</div>
-      <div class="card-title">Online Store</div>
-      <div class="card-price">₹15,000 <span style="font-size:1rem;font-weight:300;">– ₹30,000</span></div>
-      <div class="card-price-sub">One-time · Delivered in 20–24 days</div>
-      <div class="card-desc">Sell your products online with a clean storefront, product listings, and inquiry/order flow.</div>
-      <div class="features">
-        <div class="feature"><div class="feature-dot"></div>Product catalogue pages</div>
-        <div class="feature"><div class="feature-dot"></div>Order/inquiry form</div>
-        <div class="feature"><div class="feature-dot"></div>Category filtering</div>
-        <div class="feature"><div class="feature-dot"></div>Product image gallery</div>
-        <div class="feature"><div class="feature-dot"></div>Mobile-first layout</div>
-        <div class="feature"><div class="feature-dot"></div>3 rounds of revisions</div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Row 2: Combo (wide) + two smaller -->
-  <div class="grid-2">
-
-    <div class="card combo-card">
-      <div class="combo-left">
-        <div>
-          <div class="combo-tag">Best Value Bundle</div>
-          <div class="card-title">Website + GMB + LinkedIn</div>
-          <div class="card-desc">Everything your business needs to be found online, look professional, and generate leads — in one go.</div>
-        </div>
-        <div>
-          <div class="card-price">₹15,000</div>
-          <div class="card-price-sub">Full package · Most clients choose this</div>
-          <div class="combo-savings"><div class="savings-dot"></div>Save up to ₹6,000 vs. buying separately</div>
-        </div>
-      </div>
-      <div class="combo-right">
-        <div class="features">
-          <div class="feature"><div class="feature-dot"></div>Professional business website</div>
-          <div class="feature"><div class="feature-dot"></div>Google My Business setup</div>
-          <div class="feature"><div class="feature-dot"></div>LinkedIn company page</div>
-          <div class="feature"><div class="feature-dot"></div>Appear in Google Maps searches</div>
-          <div class="feature"><div class="feature-dot"></div>WhatsApp + contact integration</div>
-          <div class="feature"><div class="feature-dot"></div>Delivered in under 3-4 weeks</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:1.25rem;">
-
-      <div class="card card-ink">
-        <div class="card-category">Digital Presence</div>
-        <div class="card-title">LinkedIn Page Setup</div>
-        <div class="card-price">₹4,000 <span style="font-size:1rem;font-weight:300;">– ₹8,000</span></div>
-        <div class="card-price-sub">One-time setup + 1 month handling</div>
-        <div class="card-desc" style="margin-bottom:1rem;padding-bottom:1rem;">For startups & professionals who need a credible LinkedIn presence.</div>
-        <div class="features">
-          <div class="feature"><div class="feature-dot"></div>Company page creation & branding</div>
-          <div class="feature"><div class="feature-dot"></div>Profile optimisation</div>
-          <div class="feature"><div class="feature-dot"></div>4 posts in first month</div>
-        </div>
-      </div>
-
-      <div class="card card-teal">
-        <div class="card-category">Local SEO</div>
-        <div class="card-title">Google My Business</div>
-        <div class="card-price">₹1,500 <span style="font-size:1rem;font-weight:300;">– ₹3,000</span></div>
-        <div class="card-price-sub">One-time setup</div>
-        <div class="card-desc" style="margin-bottom:1rem;padding-bottom:1rem;">Get your business on Google Maps so local customers can find you instantly.</div>
-        <div class="features">
-          <div class="feature"><div class="feature-dot"></div>Verified GMB listing</div>
-          <div class="feature"><div class="feature-dot"></div>Photos, hours & description</div>
-          <div class="feature"><div class="feature-dot"></div>Maps & search visibility</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Monthly add-on -->
-  <div class="grid" style="grid-template-columns: 1fr; animation-delay: 0.5s;">
-    <div class="card card-rust" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
-      <div>
-        <div class="card-category">Ongoing</div>
-        <div class="card-title" style="font-size:1.1rem;">Monthly Social Media Handling</div>
-        <div class="card-desc" style="border:none;margin:0.5rem 0 0;padding:0;max-width:520px;">Let me handle your LinkedIn so you can focus on running your business. Consistent posting, captions, and basic engagement.</div>
-      </div>
-      <div style="flex-shrink:0;">
-        <div class="card-price" style="font-size:1.6rem;">₹3,000 <span style="font-size:0.9rem;font-weight:300;">– ₹6,000</span></div>
-        <div class="card-price-sub">Per month · Minimum 2 months</div>
-      </div>
-    </div>
-  </div>
-
-<!-- CTA Strip -->
-<div class="cta-strip">
-  <div class="cta-text">
-    <div class="cta-title">Not sure which plan fits?</div>
-    <div class="cta-sub">Drop me a message — I'll give you an honest recommendation for free.</div>
-  </div>
-  <div class="cta-actions">
-    <a href="mailto:snehalmahasagar@gmail.com" class="btn-primary">
-      Get in touch <span class="btn-arrow">→</span>
-    </a>
-    <a href="https://snehal-mahasagar-portfolio.vercel.app/" target="_blank" class="btn-secondary">
-      See my work <span class="btn-arrow">→</span>
-    </a>
-  </div>
+  <p class="loader-text">Mahasagar Services</p>
 </div>
 
-  <!-- Footer -->
-<footer>
-  <div>
-    <div class="footer-brand">Snehal Mahasagar</div>
-    <div class="footer-note">Freelance Web Developer · Pune, Maharashtra</div>
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-brand">
+      <span class="brand-icon">◈</span>
+      <span>Mahasagar<em>Services</em></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home"    class="nav-link active" data-section="home">Home</a></li>
+      <li><a href="#services" class="nav-link"       data-section="services">Services</a></li>
+      <li><a href="#about"   class="nav-link"        data-section="about">About</a></li>
+      <li><a href="#contact" class="nav-link"        data-section="contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Hire Me →</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════ HOME ══════════════ -->
+<section class="section hero-section" id="home">
+  <div class="hero-bg-orb orb1"></div>
+  <div class="hero-bg-orb orb2"></div>
+  <div class="hero-bg-orb orb3"></div>
+
+  <div class="hero-grid">
+    <!-- LEFT -->
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        Available for projects · Pune, India
+      </div>
+      <h1 class="hero-title reveal">
+        <span class="line">Crafting</span>
+        <span class="line golden-text">Digital</span>
+        <span class="line">Empires</span>
+      </h1>
+      <p class="hero-sub reveal">
+        Beautiful, fast &amp; conversion-focused websites that make your business unforgettable — without the agency price tag.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#services" class="btn-gold">
+          <span>Explore Services</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://snehal-mahasagar-portfolio.vercel.app/" target="_blank" class="btn-ghost">View Portfolio</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat"><span class="stat-n" data-target="30">0</span><span>+</span><p>Projects</p></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n" data-target="98">0</span><span>%</span><p>Satisfaction</p></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n" data-target="3">0</span><span>yr</span><p>Experience</p></div>
+      </div>
+    </div>
+
+    <!-- RIGHT — 3D card -->
+    <div class="hero-card-wrap reveal" id="card3d">
+      <div class="hero-3d-card" id="heroCard">
+        <div class="card-face card-front">
+          <div class="card-glow"></div>
+          <div class="card-inner">
+            <div class="card-chip">◈ Mahasagar</div>
+            <div class="card-logo-big">MS</div>
+            <div class="card-tagline">Web · GMB · LinkedIn</div>
+            <div class="card-strips">
+              <div class="strip s1"></div>
+              <div class="strip s2"></div>
+              <div class="strip s3"></div>
+            </div>
+            <div class="card-bottom-row">
+              <div>
+                <div class="cb-label">Developer</div>
+                <div class="cb-val">Snehal Mahasagar</div>
+              </div>
+              <div>
+                <div class="cb-label">Since</div>
+                <div class="cb-val">2022</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- floating chips -->
+      <div class="float-chip fc1">⚡ Fast Delivery</div>
+      <div class="float-chip fc2">🏅 Top Rated</div>
+      <div class="float-chip fc3">₹ Affordable</div>
+    </div>
   </div>
 
-  <div class="footer-contact">
-    
-    <!-- Email -->
-    <a href="mailto:snehalmahasagar@gmail.com">
-      <span class="contact-icon">📧</span>
-      snehalmahasagar@gmail.com
-    </a>
+  <!-- scroll indicator -->
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
+<!-- ══════════════ SERVICES ══════════════ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal">◈ What I Offer</div>
+      <h2 class="section-title reveal">Services &amp; <em>Pricing</em></h2>
+      <p class="section-sub reveal">Transparent pricing. Real results. No hidden costs.</p>
+    </div>
 
+    <div class="services-grid">
 
-    <!-- Portfolio -->
-    <a href="https://snehal-mahasagar-portfolio.vercel.app/" target="_blank">
-      <span class="contact-icon">🌐</span>
-      Portfolio
-    </a>
+      <div class="scard scard-gold reveal-card">
+        <div class="scard-glow"></div>
+        <div class="scard-num">01</div>
+        <div class="scard-icon">🌐</div>
+        <h3>Basic Website</h3>
+        <p>Clean, credible online presence your customers can trust.</p>
+        <div class="scard-price">₹6,000 – ₹10,000</div>
+        <div class="scard-time">⏱ 8–10 days</div>
+        <ul class="scard-features">
+          <li>3–5 custom pages</li>
+          <li>Mobile responsive</li>
+          <li>Basic SEO setup</li>
+          <li>Contact details &amp; map</li>
+          <li>1 revision round</li>
+        </ul>
+        <a href="#contact" class="scard-btn">Get Started →</a>
+      </div>
 
- 
+      <div class="scard scard-dark featured reveal-card">
+        <div class="scard-glow"></div>
+        <div class="popular-badge">⭐ Most Popular</div>
+        <div class="scard-num">02</div>
+        <div class="scard-icon">💼</div>
+        <h3>Business Website</h3>
+        <p>Converts visitors into paying customers with smart flows.</p>
+        <div class="scard-price">₹10,000 – ₹18,000</div>
+        <div class="scard-time">⏱ 10–15 days</div>
+        <ul class="scard-features">
+          <li>5–8 pages + contact form</li>
+          <li>WhatsApp inquiry button</li>
+          <li>Photo gallery</li>
+          <li>Google Maps integration</li>
+          <li>2 revision rounds</li>
+        </ul>
+        <a href="#contact" class="scard-btn">Get Started →</a>
+      </div>
 
+      <div class="scard scard-gold reveal-card">
+        <div class="scard-glow"></div>
+        <div class="scard-num">03</div>
+        <div class="scard-icon">🛒</div>
+        <h3>Online Store</h3>
+        <p>Sell your products online with a clean, professional storefront.</p>
+        <div class="scard-price">₹15,000 – ₹30,000</div>
+        <div class="scard-time">⏱ 20–24 days</div>
+        <ul class="scard-features">
+          <li>Product catalogue pages</li>
+          <li>Order/inquiry form</li>
+          <li>Category filtering</li>
+          <li>Mobile-first layout</li>
+          <li>3 revision rounds</li>
+        </ul>
+        <a href="#contact" class="scard-btn">Get Started →</a>
+      </div>
+
+      <div class="scard scard-gold reveal-card">
+        <div class="scard-glow"></div>
+        <div class="scard-num">04</div>
+        <div class="scard-icon">🔗</div>
+        <h3>LinkedIn Setup</h3>
+        <p>Credible LinkedIn company page for startups &amp; professionals.</p>
+        <div class="scard-price">₹4,000 – ₹8,000</div>
+        <div class="scard-time">⏱ 1 month handling</div>
+        <ul class="scard-features">
+          <li>Company page creation</li>
+          <li>Profile optimisation</li>
+          <li>4 posts first month</li>
+        </ul>
+        <a href="#contact" class="scard-btn">Get Started →</a>
+      </div>
+
+      <div class="scard scard-gold reveal-card">
+        <div class="scard-glow"></div>
+        <div class="scard-num">05</div>
+        <div class="scard-icon">📍</div>
+        <h3>Google My Business</h3>
+        <p>Appear on Google Maps so local customers find you instantly.</p>
+        <div class="scard-price">₹1,500 – ₹3,000</div>
+        <div class="scard-time">⏱ One-time setup</div>
+        <ul class="scard-features">
+          <li>Verified GMB listing</li>
+          <li>Photos, hours &amp; description</li>
+          <li>Maps &amp; search visibility</li>
+        </ul>
+        <a href="#contact" class="scard-btn">Get Started →</a>
+      </div>
+
+      <div class="scard scard-gold reveal-card">
+        <div class="scard-glow"></div>
+        <div class="scard-num">06</div>
+        <div class="scard-icon">📱</div>
+        <h3>Social Media Handling</h3>
+        <p>Let me manage your LinkedIn so you focus on running your business.</p>
+        <div class="scard-price">₹3,000 – ₹6,000</div>
+        <div class="scard-time">⏱ Per month · Min 2 months</div>
+        <ul class="scard-features">
+          <li>Consistent posting</li>
+          <li>Captions &amp; engagement</li>
+          <li>Monthly report</li>
+        </ul>
+        <a href="#contact" class="scard-btn">Get Started →</a>
+      </div>
+
+    </div>
+
+    <!-- BUNDLE CARD -->
+    <div class="bundle-card reveal">
+      <div class="bundle-glow"></div>
+      <div class="bundle-badge">🔥 Best Value Bundle</div>
+      <div class="bundle-grid">
+        <div class="bundle-left">
+          <h3>Website + GMB + LinkedIn</h3>
+          <p>Everything your business needs to be found online, look professional, and generate leads — all in one go.</p>
+          <div class="bundle-price">₹15,000</div>
+          <div class="bundle-sub">Full package · Most clients choose this</div>
+          <div class="bundle-savings">💚 Save up to ₹6,000 vs. buying separately</div>
+          <a href="#contact" class="btn-gold" style="display:inline-flex;margin-top:1.5rem;">
+            <span>Grab This Deal</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="bundle-right">
+          <ul class="bundle-features">
+            <li>✦ Professional business website</li>
+            <li>✦ Google My Business setup</li>
+            <li>✦ LinkedIn company page</li>
+            <li>✦ Appear in Google Maps searches</li>
+            <li>✦ WhatsApp + contact integration</li>
+            <li>✦ Delivered in under 3–4 weeks</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-wrap">
+
+      <!-- LEFT: avatar / 3d visual -->
+      <div class="about-visual reveal">
+        <div class="av-ring av-ring1"></div>
+        <div class="av-ring av-ring2"></div>
+        <div class="av-ring av-ring3"></div>
+        <div class="av-core">
+          <div class="av-initials">SM</div>
+          <div class="av-glow"></div>
+        </div>
+        <div class="av-orbit">
+          <div class="av-orb-item oi1">React</div>
+          <div class="av-orb-item oi2">HTML/CSS</div>
+          <div class="av-orb-item oi3">GMB</div>
+          <div class="av-orb-item oi4">SEO</div>
+        </div>
+        <!-- skill bars -->
+        <div class="skill-bars">
+          <div class="skbar reveal-card"><span>Web Development</span><div class="bar"><div class="bar-fill" data-w="95"></div></div></div>
+          <div class="skbar reveal-card"><span>UI/UX Design</span><div class="bar"><div class="bar-fill" data-w="85"></div></div></div>
+          <div class="skbar reveal-card"><span>SEO / GMB</span><div class="bar"><div class="bar-fill" data-w="90"></div></div></div>
+          <div class="skbar reveal-card"><span>Social Media</span><div class="bar"><div class="bar-fill" data-w="80"></div></div></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: text -->
+      <div class="about-content">
+        <div class="tag reveal">◈ About Me</div>
+        <h2 class="section-title reveal">Hello, I'm <em>Snehal Mahasagar</em></h2>
+        <p class="about-p reveal">
+          I'm a freelance web developer based in Pune, Maharashtra, passionate about building beautiful and high-performing websites that help businesses grow online. With years of hands-on experience, I combine clean code with stunning design to deliver results that truly matter.
+        </p>
+        <p class="about-p reveal">
+          From a small local shop wanting a simple website, to a startup needing full digital presence — I tailor every project to your exact needs and budget. No jargon, no hidden costs, just honest work and lasting relationships.
+        </p>
+        <div class="about-pills reveal">
+          <span>React.js</span><span>HTML5 / CSS3</span><span>JavaScript</span>
+          <span>SEO</span><span>Google My Business</span><span>LinkedIn</span>
+        </div>
+        <div class="about-actions reveal">
+          <a href="#contact" class="btn-gold">
+            <span>Work With Me</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://snehal-mahasagar-portfolio.vercel.app/" target="_blank" class="btn-ghost">Portfolio →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal">◈ Get In Touch</div>
+      <h2 class="section-title reveal">Let's Build <em>Something Great</em></h2>
+      <p class="section-sub reveal">Drop me a message — I'll reply within 24 hours.</p>
+    </div>
+
+    <div class="contact-wrap">
+
+      <!-- LEFT: info -->
+      <div class="contact-info">
+        <div class="cinfo-card reveal">
+          <div class="cinfo-icon">📧</div>
+          <div>
+            <div class="cinfo-label">Email</div>
+            <a href="mailto:snehalmahasagar@gmail.com">snehalmahasagar@gmail.com</a>
+          </div>
+        </div>
+        <div class="cinfo-card reveal">
+          <div class="cinfo-icon">📍</div>
+          <div>
+            <div class="cinfo-label">Location</div>
+            <span>Pune, Maharashtra, India</span>
+          </div>
+        </div>
+        <div class="cinfo-card reveal">
+          <div class="cinfo-icon">🌐</div>
+          <div>
+            <div class="cinfo-label">Portfolio</div>
+            <a href="https://snehal-mahasagar-portfolio.vercel.app/" target="_blank">snehal-mahasagar-portfolio.vercel.app</a>
+          </div>
+        </div>
+        <div class="cinfo-card reveal">
+          <div class="cinfo-icon">⚡</div>
+          <div>
+            <div class="cinfo-label">Response Time</div>
+            <span>Within 24 hours</span>
+          </div>
+        </div>
+
+        <!-- MAP -->
+        <div class="map-wrap reveal">
+          <div class="map-header">📍 Find Me on Map</div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242118.02577637576!2d73.72283765614603!3d18.524564956993905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1714000000000!5m2!1sen!2sin"
+            width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Pune Location Map">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- RIGHT: form -->
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="fname" placeholder="e.g. Rahul Sharma" required/>
+          <span class="form-err" id="errName"></span>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="femail" placeholder="you@example.com" required/>
+          <span class="form-err" id="errEmail"></span>
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select id="fservice">
+            <option value="">Select a service…</option>
+            <option>Basic Website (₹6k – ₹10k)</option>
+            <option>Business Website (₹10k – ₹18k)</option>
+            <option>Online Store (₹15k – ₹30k)</option>
+            <option>LinkedIn Setup</option>
+            <option>Google My Business</option>
+            <option>Bundle Package (₹15,000)</option>
+            <option>Social Media Handling</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="fmessage" rows="5" placeholder="Tell me about your project…" required></textarea>
+          <span class="form-err" id="errMsg"></span>
+        </div>
+        <button type="submit" class="btn-gold form-submit" id="submitBtn">
+          <span id="btnLabel">Send Message</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        </button>
+        <div class="form-success" id="formSuccess">
+          ✅ Thank you! I'll get back to you within 24 hours.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">◈ Mahasagar Services</div>
+        <p>Crafting digital empires for businesses across India. Beautiful websites that convert.</p>
+      </div>
+      <div class="footer-links">
+        <div class="fl-col">
+          <div class="fl-head">Navigation</div>
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="fl-col">
+          <div class="fl-head">Services</div>
+          <a href="#services">Basic Website</a>
+          <a href="#services">Business Site</a>
+          <a href="#services">Online Store</a>
+          <a href="#services">GMB Setup</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Snehal Mahasagar · Mahasagar Services</span>
+      <span>Made with ♥ in Pune, Maharashtra</span>
+    </div>
   </div>
 </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
